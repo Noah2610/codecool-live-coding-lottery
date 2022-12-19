@@ -1,19 +1,24 @@
 // Generate random lottery numbers
-// (saved to array)
 // picked from number set 1 - 20
 
 const LOTTERY_NUMBERS_LENGTH = 6;
 const RANDOM_NUMBER_RANGE = 20;
 
-const lotteryNumbers = [];
-while (lotteryNumbers.length < LOTTERY_NUMBERS_LENGTH) {
-    const number = Math.floor(Math.random() * RANDOM_NUMBER_RANGE) + 1;
+function generateLotteryNumbers() {
+    const lotteryNumbers = [];
 
-    if (!lotteryNumbers.includes(number)) {
-        lotteryNumbers.push(number);
+    while (lotteryNumbers.length < LOTTERY_NUMBERS_LENGTH) {
+        const number = Math.floor(Math.random() * RANDOM_NUMBER_RANGE) + 1;
+
+        if (!lotteryNumbers.includes(number)) {
+            lotteryNumbers.push(number);
+        }
     }
+
+    return lotteryNumbers;
 }
 
+const lotteryNumbers = generateLotteryNumbers();
 console.log(lotteryNumbers);
 
 // User input:
