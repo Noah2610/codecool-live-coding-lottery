@@ -1,5 +1,15 @@
 # Lottery App
-## Requirements
+## Idea
+- buy ticket
+- user picks their own numbers
+- lottery generates random numbers
+- check for winning ticket:
+  - primary winner: all numbers match
+  - consolation: at least 3 numbers match
+  - joker: numbers match and are in same order as lottery numbers
+
+---
+
 ### Constants
 __N__ = set of possible lottery numbers (example: 1-50)
 __M__ = amount of numbers to be picked by player and lottery
@@ -27,14 +37,3 @@ odds = 15,890,699.999 : 1
 N = [1; 20]
 M = 4
 odds = 4845 : 1
-
----
-
-## Idea
-- buy ticket
-- user picks their own numbers
-- lottery generates random numbers
-- check for winning ticket:
-  - primary winner: all numbers match
-  - consolation: at least 3 numbers match
-  - joker: numbers are in same order as lottery numbers
