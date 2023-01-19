@@ -32,13 +32,14 @@ function getUserTicket() {
     for (let i = 0; i < userInputCommaSeparated.length; i++) {
         const number = parseInt(userInputCommaSeparated[i]);
 
-        //   - check if they are valid numbers
-        if (!isNaN(number)) {
+        const isNumber = !isNaN(number);
+        const isNumberInRange = number > 0 && number <= MAX_LOTTERY_NUMBER;
+
+        if (isNumber && isNumberInRange) {
             lotteryTicket.push(number);
         }
 
         // TODO: Validate input
-        //   - check if numbers are between 1 and 20
         //   - check for duplicate numbers
         //       - iterate lottery ticket
         //       - filter duplicates
