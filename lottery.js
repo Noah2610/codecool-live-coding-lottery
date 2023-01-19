@@ -32,12 +32,16 @@ function getUserTicket() {
     for (let i = 0; i < userInputCommaSeparated.length; i++) {
         const number = parseInt(userInputCommaSeparated[i]);
 
-        // TODO: Validate input
         //   - check if they are valid numbers
+        if (!isNaN(number)) {
+            lotteryTicket.push(number);
+        }
+
+        // TODO: Validate input
         //   - check if numbers are between 1 and 20
         //   - check for duplicate numbers
-
-        lotteryTicket.push(number);
+        //       - iterate lottery ticket
+        //       - filter duplicates
     }
 
     return lotteryTicket;
