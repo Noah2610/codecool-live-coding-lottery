@@ -38,11 +38,22 @@ function getUserTicket() {
         if (isNumber && isNumberInRange) {
             lotteryTicket.push(number);
         }
+    }
 
-        // TODO: Validate input
-        //   - check for duplicate numbers
-        //       - iterate lottery ticket
-        //       - filter duplicates
+    for (let i = 0; i < lotteryTicket.length; i++) {
+        const numberOne = lotteryTicket[i];
+        for (let j = i + 1; j < lotteryTicket.length; j++) {
+            const numberTwo = lotteryTicket[j];
+            if (numberOne === numberTwo) {
+                // INVALID INPUT
+                // DUPLICATE NUMBER FOUND!
+
+                console.log(`Duplicate number found! ${numberOne}`);
+
+                // TODO:
+                // - prompt user again for new numbers input
+            }
+        }
     }
 
     return lotteryTicket;
