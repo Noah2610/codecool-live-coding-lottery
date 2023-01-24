@@ -1,6 +1,13 @@
 const prompt = require("prompt-sync")();
 
+/**
+ * Length of the generated and user lottery ticket.
+ */
 const LOTTERY_TICKET_LENGTH = 6;
+
+/**
+ * Top-range of ticket numbers.
+ */
 const MAX_LOTTERY_NUMBER = 20;
 
 function generateLotteryNumbers() {
