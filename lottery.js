@@ -52,15 +52,18 @@ function getUserTicket() {
         for (let j = i + 1; j < lotteryTicket.length; j++) {
             const numberTwo = lotteryTicket[j];
             if (numberOne === numberTwo) {
-                // INVALID INPUT
-                // DUPLICATE NUMBER FOUND!
-
                 console.log(`Duplicate number found! ${numberOne}`);
-
-                // TODO:
-                // - prompt user again for new numbers input
+                return getUserTicket();
             }
         }
+    }
+
+    if (lotteryTicket.length !== LOTTERY_TICKET_LENGTH) {
+        console.log(
+            `You need to input ${LOTTERY_TICKET_LENGTH} positive numbers! ` +
+            `You entered ${lotteryTicket.length} number(s).`
+        );
+        return getUserTicket();
     }
 
     return lotteryTicket;
@@ -72,5 +75,5 @@ console.log(`Secret lottery numbers: ${lotteryNumbers}`);
 const userLotteryTicket = getUserTicket();
 console.log(`User's lottery ticket: ${userLotteryTicket}`);
 
-// Check for winning ticket
-// joker numbers
+// TODO Check for winning ticket
+// - compare generated and user tickets
