@@ -1,0 +1,17 @@
+{
+    "name": "lottery-app",
+    "version": "0.0.0",
+    "description": "A lottery command-line app",
+    "main": "lottery.js",
+    "scripts": {
+        "start": "node lottery.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Noah2610/codecool-live-coding-lottery.git"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "prompt-sync": "^4.2.0"
+    }
+}
