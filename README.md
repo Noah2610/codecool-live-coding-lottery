@@ -8,6 +8,18 @@
   - consolation: at least 3 numbers match
   - joker: numbers match and are in same order as lottery numbers
 
+## Setup
+To install the dependencies, run:
+```
+npm install
+```
+
+## Run
+To run the program, run:
+```
+node lottery.js
+```
+
 ---
 
 ### Constants
