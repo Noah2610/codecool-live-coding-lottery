@@ -1,15 +1,7 @@
 const prompt = require("prompt-sync")();
 
-/**
- * Length of the generated and user lottery ticket.
- */
 const LOTTERY_TICKET_LENGTH = 6;
-
-/**
- * Top-range of ticket numbers.
- */
 const MAX_LOTTERY_NUMBER = 20;
-
 const CONSOLATION_WIN_LENGTH = 3;
 
 function generateLotteryNumbers() {
@@ -29,8 +21,8 @@ function generateLotteryNumbers() {
 function getUserTicket() {
     console.log(
         `Please input ${LOTTERY_TICKET_LENGTH} numbers between` +
-        ` 1 and ${MAX_LOTTERY_NUMBER}, separated by comma` +
-        "\nEvery number should only appear once"
+            ` 1 and ${MAX_LOTTERY_NUMBER}, separated by comma` +
+            "\nEvery number should only appear once",
     );
 
     const userInput = prompt("Input: ");
@@ -63,7 +55,7 @@ function getUserTicket() {
     if (lotteryTicket.length !== LOTTERY_TICKET_LENGTH) {
         console.log(
             `You need to input ${LOTTERY_TICKET_LENGTH} positive numbers! ` +
-            `You entered ${lotteryTicket.length} number(s).`
+                `You entered ${lotteryTicket.length} number(s).`,
         );
         return getUserTicket();
     }
@@ -79,10 +71,10 @@ function checkMatchingLotteryNumbers(lotteryNumbers, userNumbers) {
     joker winner:
         lottery numbers: 1,2,3,4,5,6
         user numbers:    1,2,3,4,5,6
+    consolation winner:
+        lottery numbers: 1,2,3,4,5,6
+        user numbers:    9,1,8,2,7,3
     */
-
-    // Check for winning ticket
-    // - loop over both tickets
     let matchCount = 0;
 
     for (let i = 0; i < LOTTERY_TICKET_LENGTH; i++) {
@@ -100,9 +92,6 @@ function checkMatchingLotteryNumbers(lotteryNumbers, userNumbers) {
     } else if (isConsolationWin) {
         console.log("CONSOLATION WIN!");
     }
-
-    console.log("lotteryNumbers: ", lotteryNumbers);
-    console.log("userNumbers: ", userNumbers);
 }
 
 const lotteryNumbers = generateLotteryNumbers();
