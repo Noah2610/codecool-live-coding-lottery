@@ -10,6 +10,8 @@ const LOTTERY_TICKET_LENGTH = 6;
  */
 const MAX_LOTTERY_NUMBER = 20;
 
+const CONSOLATION_WIN_LENGTH = 3;
+
 function generateLotteryNumbers() {
     const lotteryNumbers = [];
 
@@ -69,11 +71,44 @@ function getUserTicket() {
     return lotteryTicket;
 }
 
+function checkMatchingLotteryNumbers(lotteryNumbers, userNumbers) {
+    /*
+    primary winner:
+        lottery numbers: 1,2,3,4,5,6
+        user numbers:    6,2,3,5,1,4
+    joker winner:
+        lottery numbers: 1,2,3,4,5,6
+        user numbers:    1,2,3,4,5,6
+    */
+
+    // Check for winning ticket
+    // - loop over both tickets
+    let matchCount = 0;
+
+    for (let i = 0; i < LOTTERY_TICKET_LENGTH; i++) {
+        for (let j = 0; j < LOTTERY_TICKET_LENGTH; j++) {
+            if (lotteryNumbers[i] === userNumbers[j]) {
+                matchCount++;
+            }
+        }
+    }
+
+    const isPrimaryWin = matchCount === LOTTERY_TICKET_LENGTH;
+    const isConsolationWin = matchCount >= CONSOLATION_WIN_LENGTH;
+    if (isPrimaryWin) {
+        console.log("PRIMARY WIN!");
+    } else if (isConsolationWin) {
+        console.log("CONSOLATION WIN!");
+    }
+
+    console.log("lotteryNumbers: ", lotteryNumbers);
+    console.log("userNumbers: ", userNumbers);
+}
+
 const lotteryNumbers = generateLotteryNumbers();
 console.log(`Secret lottery numbers: ${lotteryNumbers}`);
 
 const userLotteryTicket = getUserTicket();
 console.log(`User's lottery ticket: ${userLotteryTicket}`);
 
-// TODO Check for winning ticket
-// - compare generated and user tickets
+checkMatchingLotteryNumbers(lotteryNumbers, userLotteryTicket);
