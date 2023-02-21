@@ -83,20 +83,38 @@ function checkMatchingLotteryNumbers(lotteryNumbers, userNumbers) {
     const isConsolationWin = matchCount >= CONSOLATION_WIN_LENGTH;
 
     if (isJokerWin) {
-        console.log("JOKER WIN!");
+        return "joker";
     } else if (isPrimaryWin) {
-        console.log("PRIMARY WIN!");
+        return "primary";
     } else if (isConsolationWin) {
-        console.log("CONSOLATION WIN!");
+        return "consolation";
+    } else {
+        return null;
     }
 }
 
 const lotteryNumbers = generateLotteryNumbers();
 console.log(`Secret lottery numbers: ${lotteryNumbers}`);
 
-const userLotteryTicket = getUserTicket();
-console.log(`User's lottery ticket: ${userLotteryTicket}`);
+const userTickets = [];
 
-checkMatchingLotteryNumbers(lotteryNumbers, userLotteryTicket);
+for (let i = 0; i < 3; i++) {
+    const userLotteryTicket = getUserTicket();
+    userTickets.push(userLotteryTicket);
+}
+
+for (let i = 0; i < userTickets.length; i++) {
+    const winType = checkMatchingLotteryNumbers(lotteryNumbers, userTickets[i]);
+
+    const userId = i + 1;
+
+    if (winType === "joker") {
+        console.log(`User ${userId} wins with Joker!`);
+    } else if (winType === "primary") {
+        console.log(`User ${userId} wins with Primary!`);
+    } else if (winType === "consolation") {
+        console.log(`User ${userId} wins with Consolation!`);
+    }
+}
 
 // TODO: What do we do with the winner?
