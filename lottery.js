@@ -64,17 +64,6 @@ function getUserTicket() {
 }
 
 function checkMatchingLotteryNumbers(lotteryNumbers, userNumbers) {
-    /*
-    primary winner:
-        lottery numbers: 1,2,3,4,5,6
-        user numbers:    6,2,3,5,1,4
-    joker winner:
-        lottery numbers: 1,2,3,4,5,6
-        user numbers:    1,2,3,4,5,6
-    consolation winner:
-        lottery numbers: 1,2,3,4,5,6
-        user numbers:    9,1,8,2,7,3
-    */
     let matchCount = 0;
 
     for (let i = 0; i < LOTTERY_TICKET_LENGTH; i++) {
@@ -92,6 +81,8 @@ function checkMatchingLotteryNumbers(lotteryNumbers, userNumbers) {
     } else if (isConsolationWin) {
         console.log("CONSOLATION WIN!");
     }
+
+    // TODO: Joker winner
 }
 
 const lotteryNumbers = generateLotteryNumbers();
@@ -101,3 +92,5 @@ const userLotteryTicket = getUserTicket();
 console.log(`User's lottery ticket: ${userLotteryTicket}`);
 
 checkMatchingLotteryNumbers(lotteryNumbers, userLotteryTicket);
+
+// TODO: What do we do with the winner?
