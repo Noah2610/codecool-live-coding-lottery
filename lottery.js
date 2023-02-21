@@ -65,8 +65,12 @@ function getUserTicket() {
 
 function checkMatchingLotteryNumbers(lotteryNumbers, userNumbers) {
     let matchCount = 0;
+    let jokerCount = 0;
 
     for (let i = 0; i < LOTTERY_TICKET_LENGTH; i++) {
+        if (lotteryNumbers[i] === userNumbers[i]) {
+            jokerCount++;
+        }
         for (let j = 0; j < LOTTERY_TICKET_LENGTH; j++) {
             if (lotteryNumbers[i] === userNumbers[j]) {
                 matchCount++;
@@ -74,15 +78,17 @@ function checkMatchingLotteryNumbers(lotteryNumbers, userNumbers) {
         }
     }
 
+    const isJokerWin = jokerCount === LOTTERY_TICKET_LENGTH;
     const isPrimaryWin = matchCount === LOTTERY_TICKET_LENGTH;
     const isConsolationWin = matchCount >= CONSOLATION_WIN_LENGTH;
-    if (isPrimaryWin) {
+
+    if (isJokerWin) {
+        console.log("JOKER WIN!");
+    } else if (isPrimaryWin) {
         console.log("PRIMARY WIN!");
     } else if (isConsolationWin) {
         console.log("CONSOLATION WIN!");
     }
-
-    // TODO: Joker winner
 }
 
 const lotteryNumbers = generateLotteryNumbers();
