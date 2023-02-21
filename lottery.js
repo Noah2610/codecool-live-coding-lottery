@@ -3,6 +3,7 @@ const prompt = require("prompt-sync")();
 const LOTTERY_TICKET_LENGTH = 6;
 const MAX_LOTTERY_NUMBER = 20;
 const CONSOLATION_WIN_LENGTH = 3;
+const USERS_AMOUNT = 3;
 
 function generateLotteryNumbers() {
     const lotteryNumbers = [];
@@ -98,7 +99,7 @@ console.log(`Secret lottery numbers: ${lotteryNumbers}`);
 
 const userTickets = [];
 
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < USERS_AMOUNT; i++) {
     const userLotteryTicket = getUserTicket();
     userTickets.push(userLotteryTicket);
 }
