@@ -26,6 +26,7 @@ function getUserTicket(userId) {
     );
 
     const userInput = prompt(`${userId}. Input: `);
+    console.log("");
 
     const userInputCommaSeparated = userInput.split(",");
     const lotteryTicket = [];
@@ -46,18 +47,20 @@ function getUserTicket(userId) {
         for (let j = i + 1; j < lotteryTicket.length; j++) {
             const numberTwo = lotteryTicket[j];
             if (numberOne === numberTwo) {
-                console.log(`Duplicate number found! ${numberOne}`);
-                return getUserTicket();
+                console.log(
+                    `[Invalid input]\nDuplicate number found! ${numberOne}`,
+                );
+                return getUserTicket(userId);
             }
         }
     }
 
     if (lotteryTicket.length !== LOTTERY_TICKET_LENGTH) {
         console.log(
-            `You need to input ${LOTTERY_TICKET_LENGTH} positive numbers! ` +
+            `[Invalid input]\nYou need to input ${LOTTERY_TICKET_LENGTH} positive numbers! ` +
                 `You entered ${lotteryTicket.length} number(s).`,
         );
-        return getUserTicket();
+        return getUserTicket(userId);
     }
 
     return lotteryTicket;
