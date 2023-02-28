@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const prompt = require("prompt-sync")();
+const prompt = require("prompt-sync")({ sigint: true });
 
 const LOTTERY_TICKET_LENGTH = 6;
 const MAX_LOTTERY_NUMBER = 20;
