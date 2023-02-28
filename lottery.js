@@ -111,15 +111,20 @@ function generateUserTickets(usersAmount) {
 }
 
 function checkWinningUsers(lotteryNumbers, userTickets) {
+    let wins = 0;
+
     function checkWinningUser(lotteryNumbers, userTicket, userId) {
         const winType = checkMatchingLotteryNumbers(lotteryNumbers, userTicket);
 
         if (winType === "joker") {
             console.log(`User ${userId} wins with Joker!`);
+            wins++;
         } else if (winType === "primary") {
             console.log(`User ${userId} wins with Primary!`);
+            wins++;
         } else if (winType === "consolation") {
             console.log(`User ${userId} wins with Consolation!`);
+            wins++;
         }
     }
 
@@ -127,6 +132,12 @@ function checkWinningUsers(lotteryNumbers, userTickets) {
         const userId = i + 1;
         checkWinningUser(lotteryNumbers, userTickets[i], userId);
     }
+
+    if (wins === 0) {
+        console.log("No winners!");
+    }
+
+    console.log(`The lottery numbers were:\n${lotteryNumbers.join(", ")}`);
 }
 
 function getUsersAmount() {
