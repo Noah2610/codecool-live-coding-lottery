@@ -108,8 +108,8 @@ function generateUserTickets(usersAmount) {
     return userTickets;
 }
 
-function checkWinTypeForUsers(lotteryNumbers, userTickets) {
-    function checkWinTypeForUser(lotteryNumbers, userTicket, userId) {
+function checkWinningUsers(lotteryNumbers, userTickets) {
+    function checkWinningUser(lotteryNumbers, userTicket, userId) {
         const winType = checkMatchingLotteryNumbers(lotteryNumbers, userTicket);
 
         if (winType === "joker") {
@@ -123,7 +123,7 @@ function checkWinTypeForUsers(lotteryNumbers, userTickets) {
 
     for (let i = 0; i < userTickets.length; i++) {
         const userId = i + 1;
-        checkWinTypeForUser(lotteryNumbers, userTickets[i], userId);
+        checkWinningUser(lotteryNumbers, userTickets[i], userId);
     }
 }
 
@@ -139,9 +139,6 @@ function getUsersAmount() {
 }
 
 const usersAmount = getUsersAmount();
-
 const lotteryNumbers = generateLotteryNumbers();
-
 const userTickets = generateUserTickets(usersAmount);
-
-checkWinTypeForUsers(lotteryNumbers, userTickets);
+checkWinningUsers(lotteryNumbers, userTickets);
