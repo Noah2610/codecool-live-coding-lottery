@@ -130,9 +130,11 @@ function checkWinningUsers(lotteryNumbers, userTickets) {
 function getUsersAmount() {
     const userInput = prompt("How many people are playing? ");
     const usersAmount = parseInt(userInput);
+    console.log("");
 
     if (isNaN(usersAmount)) {
-        throw "Please put in a number!";
+        console.log("[Invalid input]\nPlease input a valid number!");
+        return getUsersAmount();
     }
 
     return usersAmount;
