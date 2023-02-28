@@ -3,7 +3,6 @@ const prompt = require("prompt-sync")();
 const LOTTERY_TICKET_LENGTH = 6;
 const MAX_LOTTERY_NUMBER = 20;
 const CONSOLATION_WIN_LENGTH = 3;
-const USERS_AMOUNT = 3;
 
 function generateLotteryNumbers() {
     const lotteryNumbers = [];
@@ -19,14 +18,14 @@ function generateLotteryNumbers() {
     return lotteryNumbers;
 }
 
-function getUserTicket() {
+function getUserTicket(userId) {
     console.log(
         `Please input ${LOTTERY_TICKET_LENGTH} numbers between` +
             ` 1 and ${MAX_LOTTERY_NUMBER}, separated by comma` +
             "\nEvery number should only appear once",
     );
 
-    const userInput = prompt("Input: ");
+    const userInput = prompt(`${userId}. Input: `);
 
     const userInputCommaSeparated = userInput.split(",");
     const lotteryTicket = [];
@@ -94,28 +93,52 @@ function checkMatchingLotteryNumbers(lotteryNumbers, userNumbers) {
     }
 }
 
-const lotteryNumbers = generateLotteryNumbers();
-console.log(`Secret lottery numbers: ${lotteryNumbers}`);
+function generateUserTickets(usersAmount) {
+    const userTickets = [];
 
-const userTickets = [];
+    for (let i = 0; i < usersAmount; i++) {
+        const userId = i + 1;
+        const userLotteryTicket = getUserTicket(userId);
+        userTickets.push(userLotteryTicket);
+    }
 
-for (let i = 0; i < USERS_AMOUNT; i++) {
-    const userLotteryTicket = getUserTicket();
-    userTickets.push(userLotteryTicket);
+    return userTickets;
 }
 
-for (let i = 0; i < userTickets.length; i++) {
-    const winType = checkMatchingLotteryNumbers(lotteryNumbers, userTickets[i]);
+function checkWinTypeForUsers(lotteryNumbers, userTickets) {
+    function checkWinTypeForUser(lotteryNumbers, userTicket, userId) {
+        const winType = checkMatchingLotteryNumbers(lotteryNumbers, userTicket);
 
-    const userId = i + 1;
+        if (winType === "joker") {
+            console.log(`User ${userId} wins with Joker!`);
+        } else if (winType === "primary") {
+            console.log(`User ${userId} wins with Primary!`);
+        } else if (winType === "consolation") {
+            console.log(`User ${userId} wins with Consolation!`);
+        }
+    }
 
-    if (winType === "joker") {
-        console.log(`User ${userId} wins with Joker!`);
-    } else if (winType === "primary") {
-        console.log(`User ${userId} wins with Primary!`);
-    } else if (winType === "consolation") {
-        console.log(`User ${userId} wins with Consolation!`);
+    for (let i = 0; i < userTickets.length; i++) {
+        const userId = i + 1;
+        checkWinTypeForUser(lotteryNumbers, userTickets[i], userId);
     }
 }
 
-// TODO: What do we do with the winner?
+function getUsersAmount() {
+    const userInput = prompt("How many people are playing? ");
+    const usersAmount = parseInt(userInput);
+
+    if (isNaN(usersAmount)) {
+        throw "Please put in a number!";
+    }
+
+    return usersAmount;
+}
+
+const usersAmount = getUsersAmount();
+
+const lotteryNumbers = generateLotteryNumbers();
+
+const userTickets = generateUserTickets(usersAmount);
+
+checkWinTypeForUsers(lotteryNumbers, userTickets);
